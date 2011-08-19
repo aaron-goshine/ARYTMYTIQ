@@ -1,6 +1,6 @@
 //Aaron Goshine
 window.onload = function(){
-	var btn = document.getElementById("Calculate");
+	
 	/**
 	*
 	*useage 
