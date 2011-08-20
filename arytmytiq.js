@@ -35,20 +35,19 @@ var mainArray = [ 26, 103, 102, 1, 2, 559, 538, 676, 29, 537, 516, 540, 13, 650]
     'use strict';
 /**     */
 
-    function ARYTMYTIQ(args) {
-		
+  var ARQ  =  function () {
+	   
+	   return new ARYTMYTIQ(arguments)
+
+	}
+	
+var ARYTMYTIQ = function () {
+	  
 		this.version = 1.0;
 		this.name = "ARYTMYTIQ";
-		this.agrs = arguments;
-        var that = this;
-		if (!(this instanceof ARYTMYTIQ)){
-			
-			return new ARYTMYTIQ(args);
-			
-			}
-	
-
+		this.param = arguments[0];
 		
+	  
     }
 	
     ARYTMYTIQ.prototype = Math;
@@ -69,6 +68,91 @@ var mainArray = [ 26, 103, 102, 1, 2, 559, 538, 676, 29, 537, 516, 540, 13, 650]
     ARYTMYTIQ.prototype.console = function (message) {
         console.log(message);
     };
+	 /**
+     *
+     *isType
+     */
+    ARYTMYTIQ.prototype.isType = function (obj,cons) {
+		
+		if(obj !== undefined ){
+			
+			
+	return obj.constructor === cons;
+		
+		}else { return false;}
+		
+	
+	}
+	 /**
+     *
+     *foreach
+     */
+    ARYTMYTIQ.prototype.foreach = function (arr,func) {
+		
+     var i = 0,targetArr=[],loclen=0;
+	 
+
+	 
+	 if(this.isType(this.param[0], Array)){
+		 
+		 targetArr = this.param[0];
+		 
+		 }else{
+		targetArr = arr; 
+		} 
+	 
+	 loclen = targetArr.length ;
+	 
+	 for(i;i < loclen; i += 1){
+		 func(targetArr[i]);
+		 }
+	 
+    };
+	
+	 /**
+     *
+     *foreach
+     */
+    ARYTMYTIQ.prototype.tiq = function (infx) {
+		var numa,numb;infix = {
+		'-' :function(){
+				return numa - numb;
+				},
+		'+' :function(){
+		
+				return numa + numb;
+			},
+		'*' :function(){
+				return numa * numb;
+				},
+		'/' :function(){
+				return numa / numb;
+				},
+		'+=' :function(){
+				return numa += numb;
+				},
+		'===' :function(){
+				return numa === numb;
+				}
+			
+			} 
+			
+			if(this.isType(this.param[0],Number) && this.isType(this.param[1],Number)){
+				numa = this.param[0];
+				numb = this.param[1];
+				
+				} else if(this.isType(this.param[0],Array)){
+					
+				numa = this.param[0][0];
+				numb = this.param[0][1];
+				}
+			
+return  infix[infx]();
+			
+			
+			
+		
+		}
     /**
      *@Paramiter{Array}
      *Max value of list 
@@ -287,7 +371,7 @@ var mainArray = [ 26, 103, 102, 1, 2, 559, 538, 676, 29, 537, 516, 540, 13, 650]
     };
    
 	/***** --- *****/
-window.ARQ = ARYTMYTIQ 
+window.ARQ = ARQ; 
 })();
 /**
  *useage*/
