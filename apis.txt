@@ -1,0 +1,8 @@
+﻿
+
+
+websites
+
+http://whois.domaintools.com
+
+curl "http://www.whoisxmlapi.com/whoiswebserver/whoisService?\"

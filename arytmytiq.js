@@ -371,7 +371,9 @@ return  infix[infx]();
     };
    
 	/***** --- *****/
-window.ARQ = ARQ; 
+window.ARQ = ARQ;
+window.ARYTMYTIQ = ARYTMYTIQ ; 
+
 })();
 /**
  *useage*/
