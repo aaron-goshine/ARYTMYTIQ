@@ -35,12 +35,7 @@ var mainArray = [ 26, 103, 102, 1, 2, 559, 538, 676, 29, 537, 516, 540, 13, 650]
     'use strict';
 /**     */
 
-  var ARQ  =  function () {
-	   
-	   return new ARYTMYTIQ(arguments)
 
-	}
-	
 var ARYTMYTIQ = function () {
 	  
 		this.version = 1.0;
@@ -114,40 +109,41 @@ var ARYTMYTIQ = function () {
      *foreach
      */
     ARYTMYTIQ.prototype.tiq = function (infx) {
-		var numa,numb;infix = {
-		'-' :function(){
+		
+		var infix = {
+		'-' :function(numa,numb){
 				return numa - numb;
 				},
-		'+' :function(){
+		'+' :function(numa,numb){
 		
 				return numa + numb;
 			},
-		'*' :function(){
+		'*' :function(numa,numb){
 				return numa * numb;
 				},
-		'/' :function(){
+		'/' :function(numa,numb){
 				return numa / numb;
 				},
-		'+=' :function(){
+		'+=':function(numa,numb){
 				return numa += numb;
 				},
-		'===' :function(){
+		'===':function(numa,numb){
 				return numa === numb;
 				}
 			
 			} 
+		
+		
+			//--alert(this.param[0][0]);
 			
-			if(this.isType(this.param[0],Number) && this.isType(this.param[1],Number)){
-				numa = this.param[0];
-				numb = this.param[1];
-				
-				} else if(this.isType(this.param[0],Array)){
-					
-				numa = this.param[0][0];
-				numb = this.param[0][1];
-				}
 			
-return  infix[infx]();
+			var allResult = this.param[0][0];
+		    var restArr = this.remove((this.param[0].concat([])), 0,1);
+			this.foreach(restArr,function(irr){ 
+			allResult =  infix[infx](allResult,irr) ;});
+			
+			
+return  allResult;
 			
 			
 			
@@ -241,14 +237,22 @@ return  infix[infx]();
         return trackerNumber;
 
     };
+	/**/
+	
+	ARYTMYTIQ.prototype.remove = function(array, from, to) {
+  var rest = array.slice((to || from) + 1 || array.length);
+  array.length = from < 0 ? array.length + from : from;
+  return array.push.apply(array, rest);
+};
+
 	 /**
      *@Paramiter{Array}
      *addValue (Array) :return Average
      */
-    ARYTMYTIQ.prototype.minus= function (arr) {
-		var innerLength = arr.length,trackerNumber = 0,i;
+  ARYTMYTIQ.prototype.minus= function (arr) {
+	  var innerLength = arr.length,trackerNumber = 0,i;
 
- for (i = 0; i < innerLength; i += 1) {
+for (i = 0; i < innerLength; i += 1) {
 
              arr[i] - (arr[i-1] || 0) ;
 
@@ -356,9 +360,7 @@ return  infix[infx]();
             }
 
         }
-
-
-        if (subArrRev[subArrRev.length - 1] === ",") {
+if (subArrRev[subArrRev.length - 1] === ",") {
             subArrRev.splice(subArrRev.length - 1, 1);
         };
 
@@ -371,6 +373,11 @@ return  infix[infx]();
     };
    
 	/***** --- *****/
+
+ var ARQ  =  function () {
+	   return new ARYTMYTIQ(arguments)
+}
+	
 window.ARQ = ARQ;
 window.ARYTMYTIQ = ARYTMYTIQ ; 
 

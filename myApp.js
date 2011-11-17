@@ -7,9 +7,11 @@ window.onload = function(){
 	*/
 	//displayInMyConsole(ARQ().commaFmt(-100000000000.12343));
 	/*displayInMyConsole(ARQ([10,1,3]).foreach(null,function(x){
-		alert(x);
-		}));	*/
-	displayInMyConsole(ARQ([100,13,10,34]).tiq('*'))
+		
+		alert(ARQ([100,13,3]).tiq('*'));
+		}));	
+	*/
+	displayInMyConsole(ARQ([100,3,4]).tiq('+'))
 
 	//--	
 }
