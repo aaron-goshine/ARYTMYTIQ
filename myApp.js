@@ -1,4 +1,6 @@
 //Aaron Goshine
+var mainArray = [ 26, 103, 102, 1, 2, 559, 538, 676, 29, 537, 516, 540, 13, 650];
+var randarr = [ 20, 100, 50,10];
 window.onload = function(){
 	
 	/**
@@ -11,7 +13,7 @@ window.onload = function(){
 		alert(ARQ([100,13,3]).tiq('*'));
 		}));	
 	*/
-	displayInMyConsole(ARQ([100,3,4]).tiq('+'))
+	displayInMyConsole(ARQ([ 20, 100, 50,10]).tiq('/').currencyFmt(5000).commaFmt(5000).resolver)
 
 	//--	
 }

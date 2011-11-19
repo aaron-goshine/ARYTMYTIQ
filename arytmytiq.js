@@ -41,6 +41,7 @@ var ARYTMYTIQ = function () {
 		this.version = 1.0;
 		this.name = "ARYTMYTIQ";
 		this.param = arguments[0];
+		this.resolver = "";
 		
 	  
     }
@@ -85,21 +86,17 @@ var ARYTMYTIQ = function () {
     ARYTMYTIQ.prototype.foreach = function (arr,func) {
 		
      var i = 0,targetArr=[],loclen=0;
-	 
-
-	 
-	 if(this.isType(this.param[0], Array)){
-		 
-		 targetArr = this.param[0];
-		 
-		 }else{
-		targetArr = arr; 
-		} 
-	 
-	 loclen = targetArr.length ;
+	
+	 if(this.isType(this.param[0], Array)&& arr == null){
+		targetArr = this.param[0];
+	    }else{ targetArr = arr;} 
+		
+	    loclen = targetArr.length ;
 	 
 	 for(i;i < loclen; i += 1){
+		 
 		 func(targetArr[i]);
+		 
 		 }
 	 
     };
@@ -109,10 +106,13 @@ var ARYTMYTIQ = function () {
      *foreach
      */
     ARYTMYTIQ.prototype.tiq = function (infx) {
+	
+		
 		
 		var infix = {
 		'-' :function(numa,numb){
-				return numa - numb;
+				
+				return Math.abs(numa) - numb;
 				},
 		'+' :function(numa,numb){
 		
@@ -127,23 +127,49 @@ var ARYTMYTIQ = function () {
 		'+=':function(numa,numb){
 				return numa += numb;
 				},
+		'==':function(numa,numb){
+				return numa == numb;
+				},
 		'===':function(numa,numb){
 				return numa === numb;
 				}
 			
 			} 
+			
+			//---
+			
+	  var modi = {'as' :function(arr){
+		  //assencending sort 
+		          return arr;
+				  },
+				  'ds' :function(arr){
+					  //decending sort 
+		          return arr;
+				  },
+		'rnd' :function(arr){
+			 //rondomise sort 
+		return arr;
+			}}
 		
 		
 			//--alert(this.param[0][0]);
 			
 			
 			var allResult = this.param[0][0];
-		    var restArr = this.remove((this.param[0].concat([])), 0,1);
+			var inpArray = this.param[0].concat([]);
+		    var restArr = this.remove(inpArray,0);
+			
+		
+			
 			this.foreach(restArr,function(irr){ 
-			allResult =  infix[infx](allResult,irr) ;});
+		    allResult =  infix[infx](allResult,irr);
+			
+			});
 			
 			
-return  allResult;
+		this.resolver = 	allResult;
+		
+return  this;
 			
 			
 			
@@ -240,9 +266,10 @@ return  allResult;
 	/**/
 	
 	ARYTMYTIQ.prototype.remove = function(array, from, to) {
+		
   var rest = array.slice((to || from) + 1 || array.length);
-  array.length = from < 0 ? array.length + from : from;
-  return array.push.apply(array, rest);
+  return rest;
+  
 };
 
 	 /**
@@ -290,9 +317,14 @@ for (i = 0; i < innerLength; i += 1) {
      */
 
     ARYTMYTIQ.prototype.currencyFmt = function (value) {
-     
+        
+		  var valueinit = (value == null || 'undefined' ) ? this.resolver.toString(): value.toString();
+		  
+		
+		  
+		  
 
-        var ftValue = parseFloat(value),
+        var ftValue = parseFloat( valueinit),
             minus = "",
             ftValueToStr = "";
 
@@ -318,16 +350,19 @@ for (i = 0; i < innerLength; i += 1) {
             ftValueToStr += '0';
         }
         ftValueToStr = minus + ftValueToStr;
-        return ftValueToStr;
+	
+	
+		 this.resolver = ftValueToStr;
+		 return this; 
     };
 
     /**
      *
      */
     ARYTMYTIQ.prototype.commaFmt = function (value) {
-        var valueString = value.toString(),
-            valueSplitArr = valueString.split('.', 2),
-            intOfIndexSnd = valueSplitArr[1],
+		
+  var valueString= (value == null || 'undefined' ) ? this.resolver.toString(): value.toString(),    				   valueSplitArr = valueString.split('.', 2),
+            intOfIndexSnd = valueSplitArr[1]||"00",
             intOfIndexFirst = parseInt(valueSplitArr[0],10),
             minus = '',
             strCast = "",
@@ -335,6 +370,8 @@ for (i = 0; i < innerLength; i += 1) {
             subLength, subArrRev = [],
             xtracker = 0,
             returnValue,i,tracker;
+		
+
 
         if (isNaN(intOfIndexFirst)) {
             return;
@@ -367,8 +404,11 @@ if (subArrRev[subArrRev.length - 1] === ",") {
         subArrRev.reverse();
 
         returnValue = minus + (subArrRev.join("")) + '.' + intOfIndexSnd;
-
-        return returnValue;
+        this.resolver = returnValue;
+		
+		
+        return this;
+		
 
     };
    
