@@ -9,8 +9,7 @@ window.onload = function(){
 	*/
 	//displayInMyConsole(ARQ().commaFmt(-100000000000.12343));
 	/*displayInMyConsole(ARQ([10,1,3]).foreach(null,function(x){
-		
-		alert(ARQ([100,13,3]).tiq('*'));
+	alert(ARQ([100,13,3]).tiq('*'));
 		}));	
 	*/
 	displayInMyConsole(ARQ([ 20, 100, 50,10]).tiq('/').currencyFmt(5000).commaFmt(5000).resolver)
